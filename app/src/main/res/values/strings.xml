@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="ArtsAndLiterature">ArtsAndLiterature</string>
+    <string name="FoodAndDrink">FoodAndDrink</string>
+    <string name="GeneralKnowledge">GeneralKnowledge</string>
+    <string name="Geography">Geography</string>
+    <string name="History">History</string>
+    <string name="Music">Music</string>
+    <string name="Science">Science</string>
+    <string name="SocietyAndCulture">SocietyAndCulture</string>
+    <string name="SportAndLeisure">SportAndLeisure</string>
+    <string name="log_in">Login</string>
+    <string name="email">email</string>
+    <string name="invalid_field">invalid field</string>
+    <string name="password">password</string>
+    <string name="return_to_sing_up">return to sign up</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">fist name</string>
+    <string name="last_name">last name</string>
+    <string name="you_have_an_account_log_in">You have an account? Login.</string>
+    <string name="add_to_favorites">Add to favorites</string>
+</resources>
