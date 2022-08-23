@@ -28,6 +28,7 @@ class StatsFragment(
     private lateinit var addToFavorites: Button
     private lateinit var sharedPreferences: SharedPreferencesRepository
     private lateinit var currentResult: TextView
+    private lateinit var pref: TextView
 
 
     override fun onCreateView(
@@ -46,6 +47,9 @@ class StatsFragment(
         sharedPreferences = SharedPreferencesRepository(requireContext(), currentEmail)
 
         binding.root.run {
+
+            pref = findViewById(R.id.pref)
+            pref.text = sharedPreferences.getFavoritesQuestions(currentEmail)[0].question
 
             addToFavorites = findViewById(R.id.addToFavorites)
             addToFavorites.setOnClickListener {

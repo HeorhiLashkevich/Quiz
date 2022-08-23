@@ -30,6 +30,18 @@
     </TextView>
 
     <TextView
+        android:id="@+id/pref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimens_24dp"
+        android:layout_marginTop="@dimen/dimens_24dp"
+        android:textSize="@dimen/dimens_34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentResult">
+
+    </TextView>
+
+    <TextView
         android:id="@+id/yoursResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,16 +76,16 @@
 
     </TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_stats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_34sp"
-        android:padding="@dimen/dimens_24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yoursResult">
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recycler_view_stats"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="@dimen/dimens_34sp"-->
+<!--        android:padding="@dimen/dimens_24dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/yoursResult">-->
 
-    </androidx.recyclerview.widget.RecyclerView>
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
