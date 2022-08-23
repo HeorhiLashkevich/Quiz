@@ -21,19 +21,19 @@ class SharedPreferencesRepository(
         context.getSharedPreferences(SHARED_PREF_FAIL, MODE_PRIVATE)
 
 
-    fun addTheQuestionsToFavorites(list: Questions, userEmail: String) {
+    fun addTheQuestionsToFavorites(list: List<Question>, userEmail: String) {
         val jsonStudent = Gson().toJson(list)
         sharedPref.edit {
             putString(userEmail, jsonStudent)
         }
     }
 
-    fun getFavoritesQuestions(userEmail: String): Questions? {
+    fun getFavoritesQuestions(userEmail: String): List<Question> {
         val jsonQuestions = sharedPref.getString(userEmail, "")
         if (jsonQuestions.isNullOrBlank()) {
-            return null
+            return arrayListOf()
         }
-        return Gson().fromJson(jsonQuestions, Questions::class.java)
+        return Gson().fromJson(jsonQuestions, Array<Question>::class.java).toList()
     }
 
     fun clear() {

@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.example.quiz.R
 import com.example.quiz.adapter.QuizViewModel
 import com.example.quiz.databinding.FragmentQuizBinding
 import kotlinx.android.synthetic.main.fragment_quiz.view.firstOption
@@ -19,9 +21,12 @@ import kotlinx.android.synthetic.main.fragment_quiz.view.question
 import kotlinx.android.synthetic.main.fragment_quiz.view.secondOption
 import kotlinx.android.synthetic.main.fragment_quiz.view.thirdOption
 import kotlinx.android.synthetic.main.item_questions.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class QuizFragment(
-    private var category: String? = null
+    private var category: String? = null,
+    private var userEmail: String
 ) : Fragment() {
 
     //    @Inject
@@ -30,6 +35,8 @@ class QuizFragment(
     private lateinit var binding: FragmentQuizBinding
     private var correctAnswer = ""
     private var index = 0
+    private var result = 0
+    private var number = 0
 
     private val viewModel by viewModels<QuizViewModel>()
 
@@ -51,6 +58,11 @@ class QuizFragment(
         viewModel.currentQuestion.observe(viewLifecycleOwner) {
             correctAnswer = it.correctAnswer
         }
+        viewModel.questionNumberLiveData.observe(viewLifecycleOwner) {
+            number = it
+        }
+
+
 
         buttonOptions = mutableListOf(
             binding.firstOption,
@@ -83,15 +95,16 @@ class QuizFragment(
     }
 
 
-
     private fun loadQuestions() {
         viewModel.currentQuestion.observe(viewLifecycleOwner) {
             binding.root.run {
-                val answers: ArrayList<String> = arrayListOf()
-                answers.add(it.correctAnswer)
-                answers.add(it.incorrectAnswers[0])
-                answers.add(it.incorrectAnswers[1])
-                answers.add(it.incorrectAnswers[2])
+                var answers: ArrayList<String> = arrayListOf()
+                answers = arrayListOf(
+                    it.correctAnswer,
+                    it.incorrectAnswers[0],
+                    it.incorrectAnswers[1],
+                    it.incorrectAnswers[2]
+                )
                 answers.shuffle()
                 question.text = it.question
                 firstOption.text = answers[0]
@@ -126,6 +139,7 @@ class QuizFragment(
         setButtonsDisabled()
         if (buttonOptions[index].text == correctAnswer) {
             buttonOptions[index].setBackgroundColor(Color.GREEN)
+            result++
         } else {
             buttonOptions[index].setBackgroundColor(Color.RED)
             for (element in buttonOptions) {
@@ -134,13 +148,34 @@ class QuizFragment(
                 }
             }
         }
+        options()
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.loadNextQuestion()
-            loadQuestions()
-            setWhiteBackgroundForButtons()
-            setButtonsEnabled()
-        }, 1000L)
+
+    }
+
+    private fun options() {
+        if (number > 8) {
+            Handler(Looper.getMainLooper()).postDelayed({
+            }, 1000L)
+            lifecycleScope.launch(Dispatchers.IO) {
+                Handler(Looper.getMainLooper()).postDelayed({
+                }, 1000L)
+                parentFragmentManager.beginTransaction()
+                    .replace(
+                        R.id.container,
+                        StatsFragment(userEmail, result, viewModel.questions)
+                    )
+                    .addToBackStack("")
+                    .commit()
+            }
+        } else {
+            Handler(Looper.getMainLooper()).postDelayed({
+                viewModel.loadNextQuestion()
+                loadQuestions()
+                setWhiteBackgroundForButtons()
+                setButtonsEnabled()
+            }, 1000L)
+        }
 
 
     }

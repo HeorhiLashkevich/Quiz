@@ -19,17 +19,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class LoginFragment : Fragment(){
+class LoginFragment : Fragment() {
 
     private val viewUserModel by viewModels<UserViewModel>()
 
-    private lateinit var binding:  FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private var returnToSingUp: TextView? = null
     private var errorTextEmailLogIn: TextView? = null
     private var errorTextPasswordLogIn: TextView? = null
     private var signUpButtonLogIn: Button? = null
     private var emailLogIn: EditText? = null
     private var passwordLogIn: EditText? = null
+    private var currentEmailUser : String? = null
 
 
     override fun onCreateView(
@@ -44,7 +45,7 @@ class LoginFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewUserModel.currentUserEmail.observe(viewLifecycleOwner) {
-            it
+            currentEmailUser = it
         }
 
         binding.root.run {
@@ -75,10 +76,12 @@ class LoginFragment : Fragment(){
                             passwordLogIn?.text.toString()
                         )
 
-//                            Toast.makeText(requireContext(), "вы залогинились", 12).show()
                         parentFragmentManager.beginTransaction()
-                            .replace(R.id.container, CategoryFragment())
-                            .addToBackStack(null)
+                            .replace(
+                                R.id.container,
+                                CategoryFragment(currentEmailUser.toString())
+                            )
+                            .addToBackStack("")
                             .commit()
                     } else Toast.makeText(
                         requireContext(),

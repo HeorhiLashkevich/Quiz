@@ -33,7 +33,7 @@ class UserViewModel() : ViewModel() {
                     repository.insertUser(User(email, firstName, lastName, password))
 
             } catch (e: Exception) {
-                //TODO add error
+
             }
         }
     }

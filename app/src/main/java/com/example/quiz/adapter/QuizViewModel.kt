@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quiz.di.NetworkController
 import com.example.quiz.network.Question
+import com.example.quiz.network.Questions
 
 
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,7 @@ class QuizViewModel(
 
     val questions = mutableListOf<Question>()
     var questionNumber = 0
+    var questionNumberLiveData = MutableLiveData<Int>()
     val currentQuestion = MutableLiveData<Question>()
 
 
@@ -43,6 +45,7 @@ class QuizViewModel(
     fun loadNextQuestion() {
         questionNumber++
         currentQuestion.postValue(questions[questionNumber])
+        questionNumberLiveData.postValue(questionNumber)
     }
 
 }

@@ -15,11 +15,12 @@ import com.example.quiz.databinding.FragmentCategoryBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CategoryFragment : Fragment() {
+class CategoryFragment(
+    private var userEmail: String
+) : Fragment() {
 
     private lateinit var binding: FragmentCategoryBinding
     private val viewModel by viewModels<CategoryViewModel>()
-
 
 
     override fun onCreateView(
@@ -47,17 +48,17 @@ class CategoryFragment : Fragment() {
                 adapter = CategoryAdapter {
                     lifecycleScope.launch(Dispatchers.IO) {
                         parentFragmentManager.beginTransaction()
-                            .replace(R.id.container, QuizFragment(it))
+                            .replace(R.id.container, QuizFragment(it, userEmail))
                             .addToBackStack("")
                             .commit()
                     }
                 }
-                layoutManager =  LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             }
             (adapter as? CategoryAdapter)?.setList(list)
 
         }
-//            (adapter as? CategoryAdapter)
     }
 }
 

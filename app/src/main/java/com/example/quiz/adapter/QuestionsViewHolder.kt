@@ -14,11 +14,7 @@ class QuestionsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Question) {
-        val answer: ArrayList<String> = arrayListOf()
-        answer.add(item.correctAnswer)
-        answer.add(item.incorrectAnswers[0])
-        answer.add(item.incorrectAnswers[1])
-        answer.add(item.incorrectAnswers[2])
+        val answer: ArrayList<String> = arrayListOf(item.correctAnswer, item.incorrectAnswers[0], item.incorrectAnswers[1], item.incorrectAnswers[2])
         answer.shuffle()
         binding.question.text = item.question
         binding.firstOption.text = answer[0]
