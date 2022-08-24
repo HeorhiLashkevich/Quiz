@@ -15,7 +15,6 @@
 
     <TextView
         android:id="@+id/firstOption"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="@dimen/dimens_200dp"
         android:layout_height="@dimen/dimens_200dp"
         android:gravity="center"
