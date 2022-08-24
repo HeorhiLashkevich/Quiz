@@ -14,6 +14,7 @@ import com.example.quiz.databinding.FragmentStatisticBinding
 import com.example.quiz.di.SharedPreferencesRepository
 import com.example.quiz.network.Question
 import com.example.quiz.network.Questions
+import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -25,7 +26,7 @@ class StatsFragment(
 
     private lateinit var binding: FragmentStatisticBinding
     private lateinit var backButton: ImageButton
-    private lateinit var addToFavorites: Button
+    private lateinit var addToFavorites: ImageButton
     private lateinit var sharedPreferences: SharedPreferencesRepository
     private lateinit var currentResult: TextView
     private lateinit var pref: TextView
@@ -47,9 +48,11 @@ class StatsFragment(
         sharedPreferences = SharedPreferencesRepository(requireContext(), currentEmail)
 
         binding.root.run {
-
             pref = findViewById(R.id.pref)
-            pref.text = sharedPreferences.getFavoritesQuestions(currentEmail)[0].question
+            if (sharedPreferences.getFavoritesQuestions(currentEmail).isEmpty()) {
+                pref.text = ""
+            } else pref.text = sharedPreferences.getFavoritesQuestions(currentEmail)[0].question
+
 
             addToFavorites = findViewById(R.id.addToFavorites)
             addToFavorites.setOnClickListener {

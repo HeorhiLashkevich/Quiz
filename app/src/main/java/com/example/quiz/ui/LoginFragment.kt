@@ -1,6 +1,8 @@
 package com.example.quiz.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,12 +85,15 @@ class LoginFragment : Fragment() {
                             )
                             .addToBackStack("")
                             .commit()
-                    } else Toast.makeText(
-                        requireContext(),
-                        "Такого пользователя не существует или введены неверные данные",
-                        12
-                    ).show()
-                }
+                    } else Handler(Looper.getMainLooper()).post {
+                        Toast.makeText(
+                            requireContext(),
+                            "Такого пользователя не существует или введены неверные данные",
+                            12
+                        ).show()
+                    }
+                    }
+
             }
 
 

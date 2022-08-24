@@ -9,22 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.quiz.R
 import com.example.quiz.adapter.QuizViewModel
-import com.example.quiz.databinding.FragmentQuizBinding
-import kotlinx.android.synthetic.main.fragment_quiz.view.firstOption
-import kotlinx.android.synthetic.main.fragment_quiz.view.fourthOption
-import kotlinx.android.synthetic.main.fragment_quiz.view.question
-import kotlinx.android.synthetic.main.fragment_quiz.view.secondOption
-import kotlinx.android.synthetic.main.fragment_quiz.view.thirdOption
+import com.example.quiz.databinding.FragmentQuestionsBinding
+
 import kotlinx.android.synthetic.main.item_questions.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class QuizFragment(
+class QuestionsFragment(
     private var category: String? = null,
     private var userEmail: String
 ) : Fragment() {
@@ -32,7 +29,8 @@ class QuizFragment(
     //    @Inject
 //    lateinit var viewModelProvider: QuestionsViewModelProvider
     private lateinit var buttonOptions: List<Button>
-    private lateinit var binding: FragmentQuizBinding
+    private lateinit var currentQuestion: TextView
+    private lateinit var binding: FragmentQuestionsBinding
     private var correctAnswer = ""
     private var index = 0
     private var result = 0
@@ -46,7 +44,7 @@ class QuizFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentQuizBinding.inflate(inflater, container, false)
+        binding = FragmentQuestionsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,9 +56,7 @@ class QuizFragment(
         viewModel.currentQuestion.observe(viewLifecycleOwner) {
             correctAnswer = it.correctAnswer
         }
-        viewModel.questionNumberLiveData.observe(viewLifecycleOwner) {
-            number = it
-        }
+
 
 
 
@@ -92,6 +88,13 @@ class QuizFragment(
             checkAnswer(buttonOptions, index)
         }
         loadQuestions()
+        viewModel.questionNumberLiveData.observe(viewLifecycleOwner) {
+            number = it
+            binding.root.run {
+                currentQuestion = findViewById(R.id.currentQuestion)
+                currentQuestion.text = (it + 1).toString()  + "/10"
+            }
+        }
     }
 
 

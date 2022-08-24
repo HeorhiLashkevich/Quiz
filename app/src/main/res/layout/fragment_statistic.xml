@@ -15,19 +15,21 @@
         android:background="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        />
 
     <TextView
         android:id="@+id/currentResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_24dp"
-        android:layout_marginTop="@dimen/dimens_24dp"
+        android:layout_marginTop="@dimen/dimens_20dp"
         android:textSize="@dimen/dimens_34sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/yoursResult">
+        app:layout_constraintStart_toEndOf="@id/yoursResult"
+        app:layout_constraintTop_toBottomOf="@id/backButtonFromStatsToCategories">
 
     </TextView>
+
 
     <TextView
         android:id="@+id/pref"
@@ -35,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimens_24dp"
         android:layout_marginTop="@dimen/dimens_24dp"
-        android:textSize="@dimen/dimens_34sp"
+        android:textSize="@dimen/dimens_24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/currentResult">
 
@@ -54,17 +56,15 @@
 
     </TextView>
 
-    <Button
+    <ImageButton
         android:id="@+id/addToFavorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimens_24dp"
         android:layout_marginEnd="@dimen/dimens_24dp"
-        android:background="@color/white"
-        android:text="@string/add_test_to_favorites"
+        android:background="@drawable/preference_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lastTestCorrectAnswers"
@@ -76,16 +76,16 @@
 
     </TextView>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/recycler_view_stats"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="@dimen/dimens_34sp"-->
-<!--        android:padding="@dimen/dimens_24dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/yoursResult">-->
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recycler_view_stats"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="@dimen/dimens_34sp"-->
+    <!--        android:padding="@dimen/dimens_24dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@id/yoursResult">-->
 
-<!--    </androidx.recyclerview.widget.RecyclerView>-->
+    <!--    </androidx.recyclerview.widget.RecyclerView>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

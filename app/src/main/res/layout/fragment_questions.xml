@@ -5,13 +5,20 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:gravity="center"
+        android:id="@+id/currentQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/dimens_28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimens_280dp"
+        android:gravity="center"
+        android:textSize="@dimen/dimens_28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentQuestion" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/firstOption"
@@ -22,7 +29,9 @@
         android:textColor="@color/black"
         android:textSize="@dimen/dimens_28sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question" />
+        app:layout_constraintTop_toBottomOf="@id/question"
+        style="@style/AnswerButton"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/secondOption"
@@ -33,7 +42,8 @@
         app:backgroundTint = "@color/white"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/question" />
+        app:layout_constraintTop_toBottomOf="@id/question"
+        style="@style/AnswerButton"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/thirdOption"
@@ -44,7 +54,8 @@
         app:backgroundTint = "@color/white"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstOption" />
+        app:layout_constraintTop_toBottomOf="@id/firstOption"
+        style="@style/AnswerButton"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fourthOption"
@@ -55,7 +66,8 @@
         app:backgroundTint = "@color/white"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/secondOption" />
+        app:layout_constraintTop_toBottomOf="@id/secondOption"
+        style="@style/AnswerButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 <!--<?xml version="1.0" encoding="utf-8"?>-->

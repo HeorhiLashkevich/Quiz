@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Quiz</string>
     <string name="ArtsAndLiterature">ArtsAndLiterature</string>
     <string name="FoodAndDrink">FoodAndDrink</string>
@@ -19,5 +19,8 @@
     <string name="last_name">last name</string>
     <string name="you_have_an_account_log_in">You have an account? Login.</string>
     <string name="add_test_to_favorites">Add test to favorites</string>
-    <string name="your_result">Your result:</string>
+    <string name="your_result">Your result is:</string>
+    <string name="logout">Logout</string>
+    <string name="choose_a_category">Choose a category:</string>
+
 </resources>
